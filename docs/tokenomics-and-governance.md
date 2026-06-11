@@ -13,8 +13,8 @@ Genesis allocations total the equivalent of **100,000,000 Pixa Power**: 75M issu
 |---|---|---|---|---|
 | Fundraising (ICO) | 50% | 50M PP | `pixa.rex` | 5 rounds over ~5 years |
 | Team + Advisors | 25% | 25M PP | `pixa.team` | ~20 accounts (co-founders, advisors, contributors) |
-| Decentralized Pixa Fund | 25% | 25M PP equivalent | `pixa.omnibus` | held as ~245k PXS at the genesis feed |
-| **Total** | **100%** | **75M PP + ~245k PXS** (≈100M PP equivalent) | | |
+| Decentralized Pixa Fund | 25% | 25M PP equivalent | `pixa.omnibus` | held as ~250,000 PXS at the genesis feed |
+| **Total** | **100%** | **75M PP + ~250,000 PXS** (≈100M PP equivalent) | | |
 
 Key genesis facts:
 

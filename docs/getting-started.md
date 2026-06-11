@@ -52,6 +52,37 @@ You'll get the chain's global state. Note the Pixagram field names — `current_
 }
 ```
 
+## JavaScript SDK (Dpixa)
+
+The official TypeScript client library is `@pixagram/dpixa` — the Pixagram equivalent of `dhive` on Hive. Install it and point it at the mainnet RPC:
+
+```ts
+import { Client } from '@pixagram/dpixa';
+
+const client = new Client(['https://api.pixagram.com']);
+
+// Read chain state
+const props = await client.database.getDynamicGlobalProperties();
+console.log('head block:', props.head_block_number);
+
+// Broadcast a post (image encoded as base64 data URI in the body field)
+await client.broadcast.comment({
+  parent_author: '',
+  parent_permlink: 'portrait',   // hashtag
+  author: 'your-username',
+  permlink: 'first-portrait-' + Date.now(),
+  title: 'My first pixel-art portrait',
+  body: '![](data:image/png;base64,iVBORw0KG...)',
+  json_metadata: JSON.stringify({
+    tags: ['portrait', 'ai', 'firstpost'],
+    app: 'pixagram/1.0',
+    image: ['data:image/png;base64,iVBORw0KG...'],
+  }),
+}, postingKey);
+```
+
+Dhive, Beem, and Hive-JS also work against Pixagram with only the chain ID (`"pixagram"` padded to 32 bytes) and address prefix (`PIX`) changed.
+
 ## Where to go next
 
 - [Differences from Hive](differences-from-hive) — everything Pixagram renames or retunes
