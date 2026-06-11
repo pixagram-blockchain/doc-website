@@ -60,9 +60,9 @@ Sidebar order and pages (all Markdown under `docs/`):
      **`pixa.omnibus`** (verified live; issue #5's `pixa.fund` name is stale).
    - **Special accounts & restrictions**: the ICO account is restricted at the
      **consensus layer** to VESTS-only transfers (no liquid PIXA/PXS out); special
-     accounts cannot vote for witnesses. Live ICO account is **`pixa.rex`**
-     (49.5M VESTS); issue #5 calls it `pixa.ico` — naming to be confirmed with the
-     team before publishing.
+     accounts cannot vote for witnesses. The ICO account is documented as
+     **`pixa.rex`** (the live on-chain name, 49.5M VESTS; issue #5's `pixa.ico` is
+     stale — decision confirmed 2026-06-11).
    - Reward curves (verified live): `convergent_linear` author /
      `convergent_square_root` curation, `content_constant = 2500` (vs upstream 2e12),
      **60% author / 40% curation** split. (Hive HF25+ uses linear/linear; Pixagram
