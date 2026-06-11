@@ -11,6 +11,17 @@ GitHub Pages project site at `https://pixagram-blockchain.github.io/doc-website`
 custom domain planned later. Content adapts the core sections of Hive's developer portal,
 corrected for everything Pixagram changes (endpoints, tokens, governance, parameters).
 
+## Content Sources
+
+- Hive developer portal (structure and unchanged material).
+- **`pixagram-blockchain/pixagram` issue #5 ("Pixagram Mainnet Launch Checklist")** — the
+  authoritative list of Pixagram-vs-Hive changes and decided launch parameters. Must be
+  fully reflected on the site.
+- Attachments on issue #5: `Pixa_Pixagram_Getting_Started.pdf` (basis for Getting
+  Started) and the updated `Pixagram_TGE_Specification.pdf` (tokenomics reference).
+- The live chain (`api.pixagram.com`) is ground truth where it and the issue disagree;
+  discrepancies verified on 2026-06-11 are noted inline below.
+
 ## Stack & Hosting
 
 - **Framework:** Docusaurus 3, classic preset, docs-focused. Node 20.
@@ -31,40 +42,70 @@ Sidebar order and pages (all Markdown under `docs/`):
    - Chain identity: chain ID derived from the ASCII string `"pixagram"` (padded to
      32 bytes); public-key prefix `PIX`.
    - First API call: working `curl` against `condenser_api.get_dynamic_global_properties`.
-2. **Differences from Hive** (the signature page)
-   - Token model: PIXA (liquid, replaces HIVE), PXS (stable, replaces HBD), VESTS (staked).
-     Legacy-format payloads must use `PIXA`/`PXS` symbol bytes; HF26 NAI assets unchanged.
-   - API field renames table: `pxs_balance`, `pxs_exchange_rate`, `pxs_interest_rate`,
-     `reward_pixa`/`reward_pxs`, `total_vesting_fund_pixa`, `current_pxs_supply`,
-     `dpf_interval_ledger`. Symbols inside response strings normalized to PIXA/PXS.
-   - Governance: DPF (Decentralized Proposal Fund) replaces DHF; treasury account
-     `pixa.omnibus`; `proposal_fund_percent = 15%` of per-block inflation.
-   - Reward curves: `convergent_linear` author / `convergent_square_root` curation
-     (as Hive post-HF21), but `content_constant = 2500` (vs upstream 2e12) and
-     `percent_curation_rewards = 40%`.
-   - Genesis allocations: 50M VESTS `pixa.ico`, 25M VESTS `pixa.team`, ~250k PXS
-     `pixa.omnibus`; zero liquid PIXA at genesis; VESTS:PIXA = 1:1 in display units;
-     genesis median feed 1 PXS = 102 PIXA.
+2. **Differences from Hive** (the signature page — must fully reflect issue #5)
+   - Token model: PIXA (liquid, replaces HIVE), PXS (stable, replaces HBD), VESTS /
+     "Pixa Power (PP)" (staked). Legacy-format payloads must use `PIXA`/`PXS` symbol
+     bytes; HF26 NAI assets unchanged.
+   - **PXS peg**: pegged to the **Big Mac Index**, not the USD (witness price feeds via
+     `bigmac-feed`).
+   - Address/key prefix `PIX` (vs `STM`); chain ID derived from `"pixagram"`.
+   - **Max transaction size 128 KB** (vs Hive's 64 KB); live max block size 256 KB.
+   - **Jussi proxy translation layer**: the chain's C++ protocol layer keeps native
+     names/symbols; the API proxy bidirectionally translates them to Pixagram names
+     (`reward_hive` → `reward_pixa`, etc.). Field renames table: `pxs_balance`,
+     `pxs_exchange_rate`, `pxs_interest_rate`, `reward_pixa`/`reward_pxs`,
+     `total_vesting_fund_pixa`, `current_pxs_supply`, `dpf_interval_ledger`. Symbols
+     inside response strings normalized to PIXA/PXS.
+   - Governance: DPF (Decentralized Pixa Fund) replaces DHF; treasury account
+     **`pixa.omnibus`** (verified live; issue #5's `pixa.fund` name is stale).
+   - **Special accounts & restrictions**: the ICO account is restricted at the
+     **consensus layer** to VESTS-only transfers (no liquid PIXA/PXS out); special
+     accounts cannot vote for witnesses. Live ICO account is **`pixa.rex`**
+     (49.5M VESTS); issue #5 calls it `pixa.ico` — naming to be confirmed with the
+     team before publishing.
+   - Reward curves (verified live): `convergent_linear` author /
+     `convergent_square_root` curation, `content_constant = 2500` (vs upstream 2e12),
+     **60% author / 40% curation** split. (Hive HF25+ uses linear/linear; Pixagram
+     deliberately returns to the HF21-style convergent curves.)
    - Communities: Hivemind community names keep upstream's `portal-[123]\d{4,6}` pattern.
-3. **API Reference**
+3. **Tokenomics & Governance** (new page, sourced from issue #5 + TGE spec)
+   - Genesis distribution: **100,000,000 PP total** — 50M ICO (5 fundraising rounds
+     over ~5 years), 25M team + advisors (~20 accounts), 25M DPF (held as ~246k PXS in
+     `pixa.omnibus` at the genesis feed of 1 PXS = 102 PIXA). Zero liquid PIXA at
+     genesis; VESTS:PIXA = 1:1 in display units.
+   - Inflation split: **70% content rewards / 15% witnesses / 15% DPF / 0% stakers**.
+     Total inflation schedule unchanged from Hive (decreasing 0.01% per 250k blocks
+     toward the 0.95% floor).
+   - **Interest eliminated**: PXS interest rate 0% (verified live) and 0% PP staker
+     interest — returns come only from participation (posting, curating, witnessing).
+   - DPF mechanics: return proposal (`daily_pay: 0.000 PXS`) sets the funding
+     threshold, identical to Hive's DHF; proposal listing fee 10 PXS, +1 PXS/day for
+     proposals beyond 60 days.
+   - Multisig policy for special accounts: 3-of-3 (each key weight 1, threshold 3) —
+     two co-founder keys plus one advisor-shared key; rotatable.
+   - Launch posture: `initminer` is the sole block producer pre-mainnet, to be
+     disabled once at least 3 community witnesses run; max witnesses 21.
+4. **API Reference**
    - Core `condenser_api`, `database_api`, and `bridge.*` (Hivemind) methods with working
      `curl` examples against `api.pixagram.com`. Covered methods:
      `get_dynamic_global_properties`, `get_accounts`, `get_block`, `get_reward_fund`,
      `get_current_median_history_price`, `broadcast_transaction_synchronous`,
      `bridge.get_ranked_posts`, `bridge.get_account_posts`, `bridge.get_profile`.
    - Explicit pointer to Hive's developer portal for the unchanged full method surface.
-4. **Accounts & Transactions**
+5. **Accounts & Transactions**
    - Keys and authorities (owner/active/posting/memo), account creation, transaction
      signing basics — adapted from Hive docs with PIXA/PXS symbols and `PIX` prefix.
-5. **Running a Node**
+6. **Running a Node**
    - Docker images: `pixadock/pixagram:pre-mainnet` (node + cli_wallet),
      `pixadock/pixagram-haf:pre-mainnet`, `pixadock/hivemind:pre-mainnet`,
      `pixadock/bigmac-feed:latest`.
    - Witness setup via the `pixagram-blockchain/witness` repo (pre-wired to
      `api.pixagram.com:2001`); full stack via `pixagram-blockchain/alphanet` compose.
    - Note that a datadir without `config.ini` starts hived in isolation.
-6. **Resources**
+7. **Resources**
    - Org repos, Hive developer portal, explorers/tools as they appear.
+   - Witness setup and installation guide is also tracked in issue #5 as a TODO —
+     covered here by the Running a Node section.
 
 Landing page (`/`) is a short intro that routes into Getting Started.
 
@@ -80,7 +121,9 @@ Landing page (`/`) is a short intro that routes into Getting Started.
 - `npm run build` is the gate: compiles and fails on broken links.
 - Local preview with `npm start` during authoring.
 - Success criteria: site live at `https://pixagram-blockchain.github.io/doc-website`,
-  all six sections navigable, all curl examples copy-paste runnable against mainnet.
+  all seven sections navigable, all curl examples copy-paste runnable against
+  `api.pixagram.com`, and every Pixagram-vs-Hive change from issue #5 represented on
+  the Differences or Tokenomics pages.
 
 ## Out of Scope
 
