@@ -7,14 +7,14 @@ title: Tokenomics & Governance
 
 ## Genesis distribution
 
-Total supply at genesis: **100,000,000 Pixa Power (VESTS)**.
+Genesis allocations total the equivalent of **100,000,000 Pixa Power**: 75M issued as VESTS, plus the DPF's 25M-PIXA value equivalent held as PXS.
 
 | Allocation | % | Amount | Account | Purpose |
 |---|---|---|---|---|
 | Fundraising (ICO) | 50% | 50M PP | `pixa.rex` | 5 rounds over ~5 years |
 | Team + Advisors | 25% | 25M PP | `pixa.team` | ~20 accounts (co-founders, advisors, contributors) |
-| Decentralized Pixa Fund | 25% | 25M PP equivalent | `pixa.omnibus` | held as ~246k PXS at the genesis feed |
-| **Total** | **100%** | **100M PP** | | |
+| Decentralized Pixa Fund | 25% | 25M PP equivalent | `pixa.omnibus` | held as ~245k PXS at the genesis feed |
+| **Total** | **100%** | **75M PP + ~245k PXS** (≈100M PP equivalent) | | |
 
 Key genesis facts:
 
@@ -79,5 +79,5 @@ Every operation requires both co-founders plus an advisor. Keys are rotatable vi
 ## Launch posture
 
 The chain currently runs pre-mainnet with `initminer` as the sole block producer.
-It will be disabled once at least 3 community witnesses are running. Witness slots:
-21\. See [Running a Node](running-a-node) to set one up.
+It will be disabled once at least 3 community witnesses are running. There are 21
+witness slots — see [Running a Node](running-a-node) to set one up.

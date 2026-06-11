@@ -69,6 +69,8 @@ Broadcasts a signed transaction and waits for inclusion in a block. Sign with th
 Pixagram chain ID and `PIX` prefix (see
 [Accounts & Transactions](accounts-and-transactions)).
 
+This is a template, not runnable as-is — replace `SIGNED_TX_JSON` with your signed transaction object:
+
 ```bash
 curl -s -X POST https://api.pixagram.com -H 'Content-Type: application/json' \
   -d '{"jsonrpc":"2.0","method":"condenser_api.broadcast_transaction_synchronous","params":[SIGNED_TX_JSON],"id":1}'

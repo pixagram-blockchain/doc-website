@@ -57,4 +57,5 @@ You'll get the chain's global state. Note the Pixagram field names — `current_
 - [Differences from Hive](differences-from-hive) — everything Pixagram renames or retunes
 - [Tokenomics & Governance](tokenomics-and-governance) — supply, inflation, the DPF
 - [API Reference](api-reference) — core methods with runnable examples
+- [Accounts & Transactions](accounts-and-transactions) — keys, multisig, and signing
 - [Running a Node](running-a-node) — Docker images and witness setup

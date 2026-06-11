@@ -44,6 +44,7 @@ names, so API consumers only ever see Pixagram naming — and can send it too.
 |---|---|
 | `hbd_balance` | `pxs_balance` |
 | `hbd_exchange_rate` | `pxs_exchange_rate` |
+| `hbd_print_rate` | `pxs_print_rate` |
 | `hbd_interest_rate` | `pxs_interest_rate` |
 | `reward_hive` / `reward_hbd` | `reward_pixa` / `reward_pxs` |
 | `total_vesting_fund_hive` | `total_vesting_fund_pixa` |
