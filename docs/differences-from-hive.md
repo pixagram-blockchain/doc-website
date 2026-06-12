@@ -33,6 +33,7 @@ NAI-format assets work unchanged.
 | Address/key prefix | `STM` | `PIX` |
 | Chain ID | Hive's | ASCII `"pixagram"` padded to 32 bytes |
 | Max transaction size | 64 KB | **128 KB** |
+| Max block size | 64 KB | **256 KB** |
 | Block interval | 3 s | 3 s (unchanged) |
 | Max witnesses | 21 | 21 (unchanged) |
 

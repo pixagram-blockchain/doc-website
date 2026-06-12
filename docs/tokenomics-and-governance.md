@@ -65,10 +65,10 @@ Within content rewards, the split is **60% authors / 40% curators**.
 
 ## Interest: eliminated
 
-Both PXS interest and PP staker interest are **0%** (verify: `pxs_interest_rate: 0`
+Both PXS interest and PXP staker interest are **0%** (verify: `pxs_interest_rate: 0`
 in `get_dynamic_global_properties`). Rationale:
 
-- PP is already rewarded through use (curation and author rewards).
+- PXP is already rewarded through use (curation and author rewards).
 - PXS tracks a purchasing-power reference (the Big Mac Index) rather than paying
   yield.
 - No interest-bearing tokens simplifies the regulatory posture: returns come only
