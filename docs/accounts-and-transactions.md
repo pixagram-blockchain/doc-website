@@ -5,10 +5,9 @@ title: Accounts & Transactions
 
 # Accounts & Transactions
 
-Pixagram uses Hive's account and authority model unchanged — only the key prefix
-(`PIX`), chain ID, and asset symbols differ. The
-[Hive docs on keys and authorities](https://developers.hive.io/tutorials-recipes/understanding-configuration-values.html)
-apply.
+Pixagram accounts use a role-based key and authority model: every account carries
+four keys with different permission levels, and any authority can be a weighted
+multisig.
 
 ## Keys and authorities
 
@@ -21,8 +20,9 @@ Each account has four key roles:
 | Posting | posts, comments, votes, follows |
 | Memo | encrypting/decrypting transfer memos |
 
-Public keys are encoded with the **`PIX`** prefix (e.g. `PIX6LLegb…`). Any Hive
-key-generation library works — configure the address prefix to `PIX`.
+Public keys are encoded with the **`PIX`** prefix (e.g. `PIX6LLegb…`). Any
+Hive-compatible key-generation library works — configure the address prefix to
+`PIX`.
 
 ## Multisig authorities
 
@@ -51,13 +51,13 @@ mainnet fee is set by witness consensus via `update_witness`.
 
 ## Signing transactions
 
-Transactions are Hive-format. To sign, configure your library with:
+To sign transactions, configure your library with:
 
 - **Chain ID**: the ASCII string `"pixagram"` padded with zero bytes to 32 bytes,
   hex-encoded.
 - **Address prefix**: `PIX`.
 - **Asset symbols**: in legacy serialization, use `PIXA` and `PXS` symbol strings.
-  HF26 NAI asset format (`@@000000021` etc.) is unchanged from Hive.
+  NAI asset format (`@@000000021` etc.) is also supported.
 
 The simplest signer is the bundled CLI wallet (see
 [Running a Node](running-a-node#cli-wallet)), which defaults to the Pixagram chain ID:

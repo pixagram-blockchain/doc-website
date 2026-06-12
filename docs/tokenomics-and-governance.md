@@ -51,15 +51,14 @@ until the production launch.
 
 ## Inflation
 
-The total inflation schedule is unchanged from Hive (decreasing 0.01% per 250k blocks
-toward the 0.95% floor). The **split** differs:
+Inflation decreases by 0.01% per 250k blocks toward a 0.95% floor, and is split:
 
-| Recipient | Hive | Pixagram |
-|---|---|---|
-| Content rewards (authors + curators) | 65% | **70%** |
-| Witnesses | 10% | **15%** |
-| DHF / DPF | 10% | **15%** |
-| Staker interest | 15% | **0%** |
+| Recipient | Share |
+|---|---|
+| Content rewards (authors + curators) | **70%** |
+| Witnesses | **15%** |
+| DPF | **15%** |
+| Staker interest | **0%** |
 
 Within content rewards, the split is **60% authors / 40% curators**.
 
@@ -76,9 +75,8 @@ in `get_dynamic_global_properties`). Rationale:
 
 ## The DPF (Decentralized Pixa Fund)
 
-Mechanically identical to Hive's [DHF](https://developers.hive.io/): anyone can submit
-a funding proposal; stakeholders vote; funded proposals draw a daily PXS payout from
-`pixa.omnibus`.
+Anyone can submit a funding proposal; stakeholders vote; funded proposals draw a
+daily PXS payout from `pixa.omnibus`.
 
 - **Return proposal**: a `daily_pay: 0.000 PXS` proposal from the treasury sets the
   funding threshold — proposals with fewer votes than it receive nothing.
@@ -87,7 +85,7 @@ a funding proposal; stakeholders vote; funded proposals draw a daily PXS payout 
 
 ## Special-account multisig
 
-The treasury and ICO accounts use a **3-of-3** authority (native Hive multisig:
+The treasury and ICO accounts use a **3-of-3** authority (native multisig:
 three keys of weight 1, `weight_threshold: 3`):
 
 | Key | Holder |

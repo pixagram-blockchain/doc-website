@@ -6,11 +6,11 @@ title: Getting Started
 
 # Getting Started
 
-**Pixagram** is a delegated-proof-of-stake blockchain forked from [Hive](https://hive.io).
-The entire standard Hive RPC surface works on Pixagram — `condenser_api.*`,
-`database_api.*`, `bridge.*`, `follow_api.*`, `tags_api.*` — so almost everything in the
-[Hive developer portal](https://developers.hive.io/) applies here. This site documents
-what Pixagram **changes**: endpoints, token names, governance, and economic parameters.
+**Pixagram** is a delegated-proof-of-stake blockchain. Its RPC interface exposes the
+full Graphene-style API surface — `condenser_api.*`, `database_api.*`, `bridge.*`,
+`follow_api.*`, `tags_api.*` — so existing Hive-compatible tooling and libraries work
+out of the box. This site documents the chain: endpoints, tokens, governance, and
+economic parameters.
 
 ## Endpoints
 
@@ -19,7 +19,7 @@ what Pixagram **changes**: endpoints, token names, governance, and economic para
 | Mainnet | `https://api.pixagram.com` |
 | Testnet | `https://pixagram.dev` |
 
-Both serve full Hive-compatible JSON-RPC. Social methods (`bridge.*`, `follow_api.*`,
+Both serve full JSON-RPC. Social methods (`bridge.*`, `follow_api.*`,
 `tags_api.*` and some `condenser_api.*`) are routed to a Hivemind indexer behind the
 same endpoint.
 
@@ -29,9 +29,9 @@ same endpoint.
 |---|---|
 | Block interval | 3 seconds |
 | Witness slots | 21 |
-| Public-key prefix | `PIX` (e.g. `PIX6LLegb…`) — Hive uses `STM` |
+| Public-key prefix | `PIX` (e.g. `PIX6LLegb…`) |
 | Chain ID | derived from the ASCII string `"pixagram"` padded to 32 bytes |
-| Max transaction size | 128 KB (Hive: 64 KB) |
+| Max transaction size | 128 KB |
 
 ## Your first API call
 
@@ -40,8 +40,8 @@ curl -s -X POST https://api.pixagram.com -H 'Content-Type: application/json' \
   -d '{"jsonrpc":"2.0","method":"condenser_api.get_dynamic_global_properties","params":[],"id":1}'
 ```
 
-You'll get the chain's global state. Note the Pixagram field names — `current_pxs_supply`,
-`total_vesting_fund_pixa` — where Hive has `current_hbd_supply`, `total_vesting_fund_hive`:
+You'll get the chain's global state, with fields like `current_pxs_supply` and
+`total_vesting_fund_pixa`:
 
 ```json
 {
@@ -54,7 +54,7 @@ You'll get the chain's global state. Note the Pixagram field names — `current_
 
 ## JavaScript SDK (Dpixa)
 
-The official TypeScript client library is `@pixagram/dpixa` — the Pixagram equivalent of `dhive` on Hive. Install it and point it at the mainnet RPC:
+The official TypeScript client library is `@pixagram/dpixa`. Install it and point it at the mainnet RPC:
 
 ```ts
 import { Client } from '@pixagram/dpixa';
@@ -81,11 +81,11 @@ await client.broadcast.comment({
 }, postingKey);
 ```
 
-Dhive, Beem, and Hive-JS also work against Pixagram with only the chain ID (`"pixagram"` padded to 32 bytes) and address prefix (`PIX`) changed.
+Hive-compatible libraries (dhive, Beem, Hive-JS) also work against Pixagram — set the chain ID (`"pixagram"` padded to 32 bytes) and address prefix (`PIX`).
 
 ## Where to go next
 
-- [Differences from Hive](differences-from-hive) — everything Pixagram renames or retunes
+- [Protocol Reference](protocol-reference) — tokens, parameters, field names, reward curves
 - [Tokenomics & Governance](tokenomics-and-governance) — supply, inflation, the DPF
 - [API Reference](api-reference) — core methods with runnable examples
 - [Accounts & Transactions](accounts-and-transactions) — keys, multisig, and signing

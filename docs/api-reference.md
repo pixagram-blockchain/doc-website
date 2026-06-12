@@ -6,10 +6,9 @@ title: API Reference
 # API Reference
 
 All methods accept JSON-RPC 2.0 POSTs to `https://api.pixagram.com` (mainnet) or
-`https://pixagram.dev` (testnet). The full Hive method surface is available — this page
-shows the core methods with Pixagram-correct fields. For everything else, the
-[Hive API docs](https://developers.hive.io/apidefinitions/) apply verbatim (modulo the
-[field renames](differences-from-hive#the-proxy-translation-layer-jussi)).
+`https://pixagram.dev` (testnet). This page shows the core methods; the full method
+surface follows the [Hive API definitions](https://developers.hive.io/apidefinitions/),
+using Pixagram's [field names](protocol-reference#api-field-names).
 
 ## Chain state
 
@@ -58,15 +57,15 @@ curl -s -X POST https://api.pixagram.com -H 'Content-Type: application/json' \
   -d '{"jsonrpc":"2.0","method":"condenser_api.get_accounts","params":[["pixa.omnibus"]],"id":1}'
 ```
 
-Note `pxs_balance` (not `hbd_balance`), `reward_pixa_balance`, `reward_pxs_balance`.
+Note the balance fields: `pxs_balance`, `reward_pixa_balance`, `reward_pxs_balance`.
 
 ## Broadcasting
 
 ### condenser_api.broadcast_transaction_synchronous
 
 Broadcasts a signed transaction and waits for inclusion in a block. Sign with the
-[CLI wallet](running-a-node#cli-wallet) or any Hive library configured with the
-Pixagram chain ID and `PIX` prefix (see
+[CLI wallet](running-a-node#cli-wallet) or any compatible library configured with
+the Pixagram chain ID and `PIX` prefix (see
 [Accounts & Transactions](accounts-and-transactions)).
 
 This is a template, not runnable as-is — replace `SIGNED_TX_JSON` with your signed transaction object:
