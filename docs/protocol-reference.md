@@ -30,7 +30,7 @@ In **legacy-format** asset payloads, the on-wire symbol strings are `PIXA` and
 | Parameter | Value |
 |---|---|
 | Address/key prefix | `PIX` |
-| Chain ID | ASCII `"pixagram"` padded to 32 bytes |
+| Chain ID | `706978616772616d000000000000000000000000000000000000000000000000` (ASCII `"pixagram"` zero-padded to 32 bytes) |
 | Max transaction size | **128 KB** |
 | Max block size | **256 KB** |
 | Block interval | 3 s |

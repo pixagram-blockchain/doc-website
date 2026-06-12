@@ -30,7 +30,7 @@ same endpoint.
 | Block interval | 3 seconds |
 | Witness slots | 21 |
 | Public-key prefix | `PIX` (e.g. `PIX6LLegb…`) |
-| Chain ID | derived from the ASCII string `"pixagram"` padded to 32 bytes |
+| Chain ID | `706978616772616d000000000000000000000000000000000000000000000000` |
 | Max transaction size | 128 KB |
 
 ## Your first API call
@@ -81,7 +81,7 @@ await client.broadcast.comment({
 }, postingKey);
 ```
 
-Hive-compatible libraries (dhive, Beem, Hive-JS) also work against Pixagram — set the chain ID (`"pixagram"` padded to 32 bytes) and address prefix (`PIX`).
+Hive-compatible libraries (dhive, Beem, Hive-JS) also work against Pixagram — set the [chain ID](#chain-identity) and address prefix (`PIX`).
 
 ## Where to go next
 

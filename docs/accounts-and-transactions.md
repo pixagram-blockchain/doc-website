@@ -53,8 +53,9 @@ mainnet fee is set by witness consensus via `update_witness`.
 
 To sign transactions, configure your library with:
 
-- **Chain ID**: the ASCII string `"pixagram"` padded with zero bytes to 32 bytes,
-  hex-encoded.
+- **Chain ID**: `706978616772616d000000000000000000000000000000000000000000000000`
+  (the ASCII string `"pixagram"` zero-padded to 32 bytes, hex-encoded — verify with
+  `database_api.get_version`).
 - **Address prefix**: `PIX`.
 - **Asset symbols**: in legacy serialization, use `PIXA` and `PXS` symbol strings.
   NAI asset format (`@@000000021` etc.) is also supported.
