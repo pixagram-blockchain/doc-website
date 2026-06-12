@@ -5,27 +5,49 @@ title: Tokenomics & Governance
 
 # Tokenomics & Governance
 
+## The three tokens
+
+| Token | Ticker | Role |
+|---|---|---|
+| PIXA | **PXA** | Liquid token — freely transferable; does not exist at genesis |
+| Pixa Power | **PXP** | Staked governance token — the display projection of on-chain VESTS |
+| Pixa Supra | **PXS** | Supracoin referencing the Big Mac Index — floats freely, not pegged, not redeemable |
+
+On-chain, RPC responses render the liquid symbol as `PIXA` and stake as `VESTS`.
+Exchanges integrating at the RPC level deal in three symbols — PXA, PXS, and VESTS —
+while product UIs may render VESTS as PXP at the current vesting ratio.
+
 ## Genesis distribution
 
-Genesis allocations total the equivalent of **100,000,000 Pixa Power**: 75M issued as VESTS, plus the DPF's 25M-PIXA value equivalent held as PXS.
+At block 0 the protocol creates exactly **100,000,000 PXP** (expressed on-chain as
+VESTS at the genesis vesting price) and seeds **~250,000 PXS** into the DPF treasury.
+No further PXP is ever created.
 
-| Allocation | % | Amount | Account | Purpose |
-|---|---|---|---|---|
-| Fundraising (ICO) | 50% | 50M PP | `pixa.rex` | 5 rounds over ~5 years |
-| Team + Advisors | 25% | 25M PP | `pixa.team` | ~20 accounts (co-founders, advisors, contributors) |
-| Decentralized Pixa Fund | 25% | 25M PP equivalent | `pixa.omnibus` | held as ~250,000 PXS at the genesis feed |
-| **Total** | **100%** | **75M PP + ~250,000 PXS** (≈100M PP equivalent) | | |
+| Allocation | Amount | Account | Purpose |
+|---|---|---|---|
+| Operational & sale stake | 75,000,000 PXP | `pixa.rex` | token sale rounds and operations |
+| Founders & advisors | 25,000,000 PXP | `pixa.team` | ~20 accounts (co-founders, advisors, contributors) |
+| DPF treasury seed | ~250,000 PXS | `pixa.omnibus` | community-governed proposals |
+
+The reward pool, witness rewards, and ongoing DPF funding come from algorithmic
+inflation, not from genesis allocations.
 
 Key genesis facts:
 
-- **Zero liquid PIXA at genesis** — all liquid supply flows from inflation and
-  power-downs.
+- **Zero liquid PIXA (PXA) at genesis** — liquid supply emerges from power-downs,
+  content rewards, and witness rewards.
 - VESTS : PIXA = **1 : 1** in display units at genesis (the ratio drifts upward as
   inflation accrues to the vesting fund).
-- Genesis median price feed: **1 PXS = 102 PIXA**, seeded so conversions work before
-  witnesses publish feeds.
-- ICO participants' accounts are created with their PP allocation debited from
+- Genesis median price feed: **1 PXS = 102 PIXA**, carried over from the pre-mainnet
+  chain so conversions work before witnesses publish feeds.
+- Sale participants' accounts are created with their PXP allocation debited from
   `pixa.rex` (which can only ever transfer VESTS — a consensus-level rule).
+
+:::note Pre-mainnet
+The chain currently running at `api.pixagram.com` predates this genesis
+specification — its balances (e.g. `pixa.rex` holding 49.5M VESTS) will differ
+until the production launch.
+:::
 
 ## Inflation
 
@@ -47,7 +69,8 @@ Both PXS interest and PP staker interest are **0%** (verify: `pxs_interest_rate:
 in `get_dynamic_global_properties`). Rationale:
 
 - PP is already rewarded through use (curation and author rewards).
-- PXS already appreciates against fiat via the Big Mac Index peg.
+- PXS tracks a purchasing-power reference (the Big Mac Index) rather than paying
+  yield.
 - No interest-bearing tokens simplifies the regulatory posture: returns come only
   from active participation — posting, curating, witnessing.
 

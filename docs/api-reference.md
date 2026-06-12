@@ -47,7 +47,7 @@ curl -s -X POST https://api.pixagram.com -H 'Content-Type: application/json' \
   -d '{"jsonrpc":"2.0","method":"condenser_api.get_current_median_history_price","params":[],"id":1}'
 ```
 
-The PXS/PIXA median feed (PXS is pegged to the Big Mac Index).
+The PXS/PIXA median feed (PXS references the Big Mac Index).
 
 ## Accounts
 

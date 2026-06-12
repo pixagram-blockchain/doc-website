@@ -12,13 +12,15 @@ documented in the [Hive developer portal](https://developers.hive.io/).
 
 | Role | Hive | Pixagram |
 |---|---|---|
-| Liquid native token | HIVE | **PIXA** |
-| Stablecoin | HBD | **PXS** (PixaSupra) |
-| Staked token | VESTS ("Hive Power") | VESTS ("Pixa Power", PP) |
+| Liquid native token | HIVE | **PIXA** (ticker: PXA) |
+| Stablecoin → supracoin | HBD | **PXS** (Pixa Supra) |
+| Staked token | VESTS ("Hive Power") | VESTS ("Pixa Power", PXP) |
 
-**PXS is pegged to the Big Mac Index, not the US dollar.** Witness price feeds are
+**PXS references the Big Mac Index, not the US dollar.** Witness price feeds are
 published against the Big Mac Index (see the `bigmac-feed` tool in
-[Running a Node](running-a-node)).
+[Running a Node](running-a-node)); PXS floats freely and is not pegged or
+redeemable. See [Tokenomics & Governance](tokenomics-and-governance) for the full
+token model.
 
 When building **legacy-format** asset payloads, use `PIXA` / `PXS` as the on-wire
 symbol bytes — not the `STEEM` / `SBD` strings older Hive clients hardcode. HF26
