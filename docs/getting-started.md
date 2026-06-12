@@ -54,7 +54,7 @@ You'll get the chain's global state, with fields like `current_pxs_supply` and
 
 ## JavaScript SDK (Dpixa)
 
-The official TypeScript client library is `@pixagram/dpixa`. Install it and point it at the mainnet RPC:
+The official TypeScript client library is [`@pixagram/dpixa`](https://www.npmjs.com/package/@pixagram/dpixa) — install it only from that npm page to be sure you get the official package. Point it at the mainnet RPC:
 
 ```ts
 import { Client } from '@pixagram/dpixa';

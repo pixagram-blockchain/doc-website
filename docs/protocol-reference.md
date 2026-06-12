@@ -32,7 +32,7 @@ In **legacy-format** asset payloads, the on-wire symbol strings are `PIXA` and
 | Address/key prefix | `PIX` |
 | Chain ID | `706978616772616d000000000000000000000000000000000000000000000000` (ASCII `"pixagram"` zero-padded to 32 bytes) |
 | Max transaction size | **128 KB** |
-| Max block size | **256 KB** |
+| Max block size | **256 KB** (current witness-voted value; protocol ceiling 2 MB) |
 | Block interval | 3 s |
 | Witness slots | 21 |
 
@@ -67,7 +67,7 @@ spendable exclusively through approved DPF proposals. See
 
 | Account | Role | Restriction |
 |---|---|---|
-| `pixa.rex` | ICO / fundraising pool | can do nothing except transfer VESTS from itself — see below |
+| `pixa.rex` | ICO / fundraising pool | can only transfer VESTS from itself and rotate its own keys — see below |
 | `pixa.team` | Team + advisors allocation | same VESTS-only restriction, multisig-controlled |
 | `pixa.omnibus` | DPF treasury | spendable only via approved proposals |
 
@@ -77,16 +77,20 @@ control block production.
 ### The ICO account (`pixa.rex`)
 
 Pixagram uses a purpose-built, **protocol-restricted** account for the token sale.
-`pixa.rex` holds the fundraising allocation, and the consensus rules allow it
-exactly one kind of operation: **transferring VESTS (Pixa Power) out of itself** —
-that's how sale participants receive their allocation.
+`pixa.rex` holds the fundraising allocation, and the consensus rules allow it only
+two kinds of operations:
+
+- **transferring VESTS (Pixa Power) out of itself** — how sale participants
+  receive their allocation; and
+- **rotating its own keys** (`account_update`), so the multisig keyholders can be
+  replaced if a key is lost or compromised.
 
 Everything else is rejected by the chain itself:
 
 - it cannot send or hold spendable liquid PIXA or PXS;
 - it cannot vote for witnesses or DPF proposals;
 - it cannot post, comment, or vote on content;
-- it cannot perform any other operation at all.
+- it cannot perform any other operation.
 
 These restrictions are **not** a policy, a frontend filter, or a multisig promise —
 they are validated by every node on every block (in the node software's consensus

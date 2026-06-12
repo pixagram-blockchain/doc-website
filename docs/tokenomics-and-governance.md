@@ -42,7 +42,7 @@ Key genesis facts:
   chain so conversions work before witnesses publish feeds.
 - Sale participants' accounts are created with their PXP allocation debited from
   `pixa.rex` — a [protocol-restricted ICO account](protocol-reference#the-ico-account-pixarex)
-  that can do nothing except transfer VESTS from itself.
+  that can do nothing except transfer VESTS from itself and rotate its own keys.
 
 :::note Pre-mainnet
 The chain currently running at `api.pixagram.com` predates this genesis
