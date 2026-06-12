@@ -41,7 +41,8 @@ Key genesis facts:
 - Genesis median price feed: **1 PXS = 102 PIXA**, carried over from the pre-mainnet
   chain so conversions work before witnesses publish feeds.
 - Sale participants' accounts are created with their PXP allocation debited from
-  `pixa.rex` (which can only ever transfer VESTS — a consensus-level rule).
+  `pixa.rex` — a [protocol-restricted ICO account](protocol-reference#the-ico-account-pixarex)
+  that can do nothing except transfer VESTS from itself.
 
 :::note Pre-mainnet
 The chain currently running at `api.pixagram.com` predates this genesis

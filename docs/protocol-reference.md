@@ -67,12 +67,33 @@ spendable exclusively through approved DPF proposals. See
 
 | Account | Role | Restriction |
 |---|---|---|
-| `pixa.rex` | ICO / fundraising pool | **VESTS-only transfers**, enforced at the consensus layer (not just the proxy) — liquid PIXA/PXS can never leave it |
-| `pixa.team` | Team + advisors allocation | standard account, multisig-controlled |
+| `pixa.rex` | ICO / fundraising pool | can do nothing except transfer VESTS from itself — see below |
+| `pixa.team` | Team + advisors allocation | same VESTS-only restriction, multisig-controlled |
 | `pixa.omnibus` | DPF treasury | spendable only via approved proposals |
 
 Special accounts **cannot vote for witnesses**, so the foundation accounts can never
 control block production.
+
+### The ICO account (`pixa.rex`)
+
+Pixagram uses a purpose-built, **protocol-restricted** account for the token sale.
+`pixa.rex` holds the fundraising allocation, and the consensus rules allow it
+exactly one kind of operation: **transferring VESTS (Pixa Power) out of itself** —
+that's how sale participants receive their allocation.
+
+Everything else is rejected by the chain itself:
+
+- it cannot send or hold spendable liquid PIXA or PXS;
+- it cannot vote for witnesses or DPF proposals;
+- it cannot post, comment, or vote on content;
+- it cannot perform any other operation at all.
+
+These restrictions are **not** a policy, a frontend filter, or a multisig promise —
+they are validated by every node on every block (in the node software's consensus
+layer), so a transaction breaking them can never be included in the chain. Holders
+don't need to trust anyone's discretion: the sale pool can only ever leave
+`pixa.rex` as staked Pixa Power, with its keys additionally held under a
+[3-of-3 multisig](tokenomics-and-governance#special-account-multisig).
 
 ## Reward curves
 
