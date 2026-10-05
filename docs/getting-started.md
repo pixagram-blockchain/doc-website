@@ -31,7 +31,7 @@ same endpoint.
 | Witness slots | 21 |
 | Public-key prefix | `PIX` (e.g. `PIX6LLegb…`) |
 | Chain ID | `706978616772616d000000000000000000000000000000000000000000000000` |
-| Max transaction size | 128 KB |
+| Max transaction size | About 2 MB (the voted block size minus 256 bytes); `api.pixagram.com` accepts requests up to 1 MB |
 
 ## Your first API call
 
